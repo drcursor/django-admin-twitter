@@ -15,7 +15,7 @@ setup(
     license='BSD License',  
     description='Manage twitter from Django admin interface',
     long_description=README,
-    url='http://www.ebalsa.org/',
+    url='https://github.com/drcursor/django-admin-twitter',
     author='E. Balsa',
     author_email='drcursor@ebserver.org',
     classifiers=[
