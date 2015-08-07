@@ -24,8 +24,8 @@ def replytweet(modeladmin, request, queryset):
                 tweet.replied = True
                 tweet.save()
             except TwitterHTTPError as api_error:
-                print("Error: %s" % (str(api_error)), file=sys.stderr)
-                return
+                print("Error: %s" % (str(api_error)))
+
 
 replytweet.short_description = "Reply tweet"
 
@@ -38,8 +38,8 @@ def favouritetweet(modeladmin, request, queryset):
             tweet.favourited = True
             tweet.save()
         except TwitterHTTPError as api_error:
-            print("Error: %s" % (str(api_error)), file=sys.stderr)
-            return
+            print("Error: %s" % (str(api_error)))
+
 
 favouritetweet.short_description = "Favourite tweet"
 
@@ -54,8 +54,8 @@ def followauthor(modeladmin, request, queryset):
             author.followed = True
             author.save()
         except TwitterHTTPError as api_error:
-            print("Error: %s" % (str(api_error)), file=sys.stderr)
-            return
+            print("Error: %s" % (str(api_error)))
+            
 
 followauthor.short_description = "Follow"
 
@@ -84,6 +84,7 @@ class TweetAdmin(admin.ModelAdmin):
                     t.id = tweet["id"]
                     t.author = tweet["user"]["screen_name"]
                     t.title = tweet["text"].encode('utf-8')
+                    t.search = request.POST.get('search', '')
                     t.save()
                 try:
                     a = Author.objects.get(pk=tweet["user"]["screen_name"])
@@ -94,11 +95,11 @@ class TweetAdmin(admin.ModelAdmin):
             return HttpResponseRedirect("..")
             #return render(request, 'admin/updateform.html',)
 
-    list_display = ['id','date','title','author','replied','favourited',]
+    list_display = ['id','date','title','author','replied','favourited','search',]
     ordering = ['-date']
     actions = [replytweet,favouritetweet,]
     list_filter = ('replied', 'favourited')
-    search_fields = ['title','author']
+    search_fields = ['title','author','search',]
 
     class Media:
         js = ('updatebutton.js', )

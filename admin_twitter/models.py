@@ -12,7 +12,7 @@ class Tweet(models.Model):
     author = models.CharField(max_length=200)
     replied = models.BooleanField(default=False)
     favourited = models.BooleanField(default=False)
-
+    search = models.CharField(max_length=200, blank=True)
 
 class Author(models.Model):
     id = models.CharField(primary_key=True,max_length=200, blank=True)
