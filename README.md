@@ -25,7 +25,7 @@ Following these steps will create 4 tokens that you will need to place in _setti
 ##Installation
 
 - Copy the admin_twitter to your project's directory
-- Add _admin___twitter to INSTALLED_APPS on your _settings.py_
+- Add *admin_twitter* to INSTALLED_APPS on your _settings.py_
 - Add OAUTH_TOKEN , OAUTH_SECRET , CONSUMER_KEY and CONSUMER_SECRET to your _settings.py_ (follow the instructions on the Dependencies section)
 - Copy _updatebutton.js_ to your static directory
 - Update your db (manage.py makemigrations;manage.py migrate)
