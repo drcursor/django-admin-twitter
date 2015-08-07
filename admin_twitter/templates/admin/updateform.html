@@ -1,0 +1,11 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+<form action="" method="post">
+   {% csrf_token %}
+   Search String: <input type="text" name="search"><br>
+   
+   <input type="hidden" name="action" value="howmany" />
+   <input type="submit" name="apply" value="Update" />
+</form>
+{% endblock %}
