@@ -5,7 +5,7 @@ Manage twitter from Django admin interface
 
 I hold no liability for what you do with this administration interface or what happens to you by using it. Abusing the Twitter API *can* get you banned from Twitter, so make sure to read up on [proper usage](https://support.twitter.com/articles/76915-automation-rules-and-best-practices) of the Twitter API.
 
-**Do not mass reply, favorite or follow using this interface to avoid being banned**
+**Do not mass reply, favorite or follow using this interface to avoid being banned from Twitter!**
 
 ##Dependencies
 
