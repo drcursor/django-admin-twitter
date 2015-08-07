@@ -14,16 +14,19 @@ def replytweet(modeladmin, request, queryset):
     twitter = Twitter(auth=OAuth(settings.OAUTH_TOKEN, settings.OAUTH_SECRET, settings.CONSUMER_KEY, settings.CONSUMER_SECRET))
     qs = queryset.filter(replied=False)
     for tweet in qs:
-        retrievedmessage=Message.objects.filter(active=True).order_by('?').first().message
+        retrievedmessage=Message.objects.filter(active=True).order_by('?').first()
 
-        message = "@"+tweet.author+" " + retrievedmessage
-        try:
-            twitter.statuses.update(status=message, in_reply_to_status_id=tweet.id)
-            tweet.replied = True
-            tweet.save()
-        except TwitterHTTPError as api_error:
-            print("Error: %s" % (str(api_error)), file=sys.stderr)
-            return
+        if retrievedmessage is not None:
+            message = "@"+tweet.author+" " + retrievedmessage.message
+            print (message)
+            try:
+                twitter.statuses.update(status=message, in_reply_to_status_id=tweet.id)
+                tweet.replied = True
+                tweet.save()
+            except TwitterHTTPError as api_error:
+                print("Error: %s" % (str(api_error)), file=sys.stderr)
+                return
+
 replytweet.short_description = "Reply tweet"
 
 def favouritetweet(modeladmin, request, queryset):
@@ -134,3 +137,4 @@ class MessageAdmin(admin.ModelAdmin):
 admin.site.register(Tweet, TweetAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Message, MessageAdmin)
+

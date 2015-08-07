@@ -37,8 +37,8 @@ Following these steps will create 4 tokens that you will need to place in _setti
  - **Tweets** - List of fetched tweets
  
 - To start using Admin_Twitter go to **Tweets** and press **Update Tweets** (If you can't see the button on the top right corner, check that _updatebutton.js_ is being correctly loaded). You'll be asked for the search pattern for the tweets and the corresponding tweets will be added to Tweet list and the corresponding users will be added to the Author list.
-- From the Tweet list you can favourite tweets or reply to tweets - a random Message will be used for each reply (make sure to have at least one active message on the Message list) by selecting the Tweets and using the dropdown menu.
-- From the Author list you can follow users by selecting them and using the dropdown menu.
+- From the **Tweet list** you can favourite tweets or reply to tweets - a random Message will be used for each reply (make sure to have at least one active message on the Message list) by selecting the Tweets and using the dropdown menu.
+- From the **Author list** you can follow users by selecting them and using the dropdown menu.
 
 ##Limitations / TODO
 - Add rate limiting
