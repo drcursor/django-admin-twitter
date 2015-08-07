@@ -7,7 +7,7 @@ import datetime
 
 class Tweet(models.Model):
     id = models.CharField(primary_key=True,max_length=200, blank=True)
-    date = models.DateTimeField('date', default=datetime.datetime.now)
+    date = models.DateTimeField('Date imported', default=datetime.datetime.now)
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     replied = models.BooleanField(default=False)

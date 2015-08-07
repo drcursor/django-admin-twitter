@@ -74,7 +74,7 @@ class TweetAdmin(admin.ModelAdmin):
             return render(request, 'admin/updateform.html',)
         else:
             twitter = Twitter(auth=OAuth(settings.OAUTH_TOKEN, settings.OAUTH_SECRET, settings.CONSUMER_KEY, settings.CONSUMER_SECRET))
-            result = twitter.search.tweets(q=request.POST.get('search', ''),)
+            result = twitter.search.tweets(q=request.POST.get('search', ''), count=request.POST.get('number', '50'), result_type=request.POST.get('type', 'recent'))
 
             for tweet in result["statuses"]:
                 try:
@@ -91,7 +91,7 @@ class TweetAdmin(admin.ModelAdmin):
                     a = Author()
                     a.id = tweet["user"]["screen_name"]
                     a.save()
-                return HttpResponseRedirect("..")
+            return HttpResponseRedirect("..")
             #return render(request, 'admin/updateform.html',)
 
     list_display = ['id','date','title','author','replied','favourited',]
@@ -137,4 +137,3 @@ class MessageAdmin(admin.ModelAdmin):
 admin.site.register(Tweet, TweetAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Message, MessageAdmin)
-
