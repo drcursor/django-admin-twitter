@@ -13,6 +13,7 @@ class Tweet(models.Model):
     replied = models.BooleanField(default=False)
     favourited = models.BooleanField(default=False)
     search = models.CharField(max_length=200, blank=True)
+    archived = models.BooleanField(default=False)
 
 class Author(models.Model):
     id = models.CharField(primary_key=True,max_length=200, blank=True)

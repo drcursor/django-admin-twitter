@@ -9,6 +9,12 @@ from django.conf.urls import patterns, url
 from django.http import HttpResponse, HttpResponseRedirect
 # Register your models here.
 
+def archivetweet(modeladmin, request, queryset):
+    for tweet in queryset:
+        tweet.archived = True
+        tweet.save()
+
+archivetweet.short_description = "Archive tweet"
 
 def replytweet(modeladmin, request, queryset):
     twitter = Twitter(auth=OAuth(settings.OAUTH_TOKEN, settings.OAUTH_SECRET, settings.CONSUMER_KEY, settings.CONSUMER_SECRET))
@@ -26,7 +32,6 @@ def replytweet(modeladmin, request, queryset):
             except TwitterHTTPError as api_error:
                 print("Error: %s" % (str(api_error)))
 
-
 replytweet.short_description = "Reply tweet"
 
 def favouritetweet(modeladmin, request, queryset):
@@ -39,7 +44,6 @@ def favouritetweet(modeladmin, request, queryset):
             tweet.save()
         except TwitterHTTPError as api_error:
             print("Error: %s" % (str(api_error)))
-
 
 favouritetweet.short_description = "Favourite tweet"
 
@@ -55,7 +59,6 @@ def followauthor(modeladmin, request, queryset):
             author.save()
         except TwitterHTTPError as api_error:
             print("Error: %s" % (str(api_error)))
-            
 
 followauthor.short_description = "Follow"
 
@@ -95,10 +98,10 @@ class TweetAdmin(admin.ModelAdmin):
             return HttpResponseRedirect("..")
             #return render(request, 'admin/updateform.html',)
 
-    list_display = ['id','date','title','author','replied','favourited','search',]
+    list_display = ['id','date','title','author','replied','favourited','search','archived',]
     ordering = ['-date']
-    actions = [replytweet,favouritetweet,]
-    list_filter = ('replied', 'favourited')
+    actions = [replytweet,favouritetweet,archivetweet,]
+    list_filter = ('replied', 'favourited','archived',)
     search_fields = ['title','author','search',]
 
     class Media:
