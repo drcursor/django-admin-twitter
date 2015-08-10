@@ -1,6 +1,11 @@
 # django-admin-twitter
 Manage twitter from Django admin interface
 
+##Description
+**django-admin-twitter** allows you to interact with twitter in a semi-automated way.
+You can reply, favourite or follow by searching the twitter timeline based on keywords.
+If you want a fully automated way to interact with your timeline you should take a look at [TwitterFollowBot](https://github.com/rhiever/TwitterFollowBot).
+
 ##Disclaimer
 
 I hold no liability for what you do with this administration interface or what happens to you by using it. Abusing the Twitter API *can* get you banned from Twitter, so make sure to read up on [proper usage](https://support.twitter.com/articles/76915-automation-rules-and-best-practices) of the Twitter API.
